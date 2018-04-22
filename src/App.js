@@ -36,9 +36,9 @@ class App extends Component {
   }
   
   render() {
-    let streams = this.state.text;
+    // let streams = this.state.text;
 
-    if(streams === undefined) {
+    if(this.state.text === undefined) {
       return (
         <div className="App">wait</div>
       );
@@ -46,7 +46,7 @@ class App extends Component {
       return (
         <div className="App">
           <p>{this.state.total}</p>
-          {streams.map(stream => (
+          {this.state.text.map(stream => (
             <div key={stream._id}>
               {stream.channel.name}
             </div>    
@@ -54,6 +54,25 @@ class App extends Component {
         </div>
       );
       }
+
+    // if(this.state.text === undefined) {
+    //   console.log("undefined");
+    //   let stream = "wait";
+    // } else {
+    //   console.log("defined");
+    //   let stream = this.state.text.map(stream => (
+    //     <div key={stream._id}>
+    //       {stream.channel.name}
+    //     </div>
+    //   ));
+    // }
+
+    // console.log(stream);
+    // return (
+    //   <div className="App">
+    //     {stream}
+    //   </div>
+    // );
     }
   }
 
