@@ -36,7 +36,7 @@ class App extends Component {
   }
   
   render() {
-    // let streams = this.state.text;
+    console.log(this.state.text);
 
     if(this.state.text === undefined) {
       return (
@@ -48,14 +48,16 @@ class App extends Component {
           <p>{this.state.total}</p>
           {this.state.text.map(stream => (
             <div key={stream._id}>
-              {stream.channel.name}
-            </div>    
-          ))}
-        </div>
-      );
-      }
-
-    // if(this.state.text === undefined) {
+              <p>{stream.channel.name}</p>
+              <img src={stream.preview.medium}/>
+              </div>    
+            ))}
+            </div>
+          );
+        }
+        
+        // if(this.state.text === undefined) {
+          // <img src={stream.channel.preview.medium}/>
     //   console.log("undefined");
     //   let stream = "wait";
     // } else {
