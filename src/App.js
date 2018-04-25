@@ -36,45 +36,25 @@ class App extends Component {
   }
   
   render() {
-    console.log(this.state.text);
-
+    let stream ="";
+    
     if(this.state.text === undefined) {
-      return (
-        <div className="App">wait</div>
-      );
+      stream = "test";
     } else {
-      return (
-        <div className="App">
-          <p>{this.state.total}</p>
-          {this.state.text.map(stream => (
-            <div key={stream._id}>
-              <p>{stream.channel.name}</p>
-              <img src={stream.preview.medium}/>
-              </div>    
-            ))}
-            </div>
-          );
-        }
-        
-        // if(this.state.text === undefined) {
-          // <img src={stream.channel.preview.medium}/>
-    //   console.log("undefined");
-    //   let stream = "wait";
-    // } else {
-    //   console.log("defined");
-    //   let stream = this.state.text.map(stream => (
-    //     <div key={stream._id}>
-    //       {stream.channel.name}
-    //     </div>
-    //   ));
-    // }
+      stream = this.state.text.map(stream => (
+        <div key={stream._id}>
+          <p>{stream.channel.name}</p>
+          <img src={stream.preview.medium} alt={stream.channel.name}/>
+        </div>   
+      ));
+    }
 
-    // console.log(stream);
-    // return (
-    //   <div className="App">
-    //     {stream}
-    //   </div>
-    // );
+    return (
+      <div className="App">
+        <p>{this.state.total}</p>
+        {stream}
+      </div>
+    );
     }
   }
 
