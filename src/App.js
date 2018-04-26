@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-// import Request from 'superagent';
+import TwitchElement from './components/twitchElement';
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      test: null,
-      total: null
-    };
+    this.state = {};
   }
 
   componentWillMount() {
-    var url = 'https://api.twitch.tv/kraken/streams/?game=Overwatch';
+    var url = 'https://api.twitch.tv/kraken/streams/?game=fortnite&limit=24';
     
     var myHeaders = new Headers({
       'Accept': 'application/vnd.twitchtv.v5+json',  
@@ -30,28 +27,25 @@ class App extends Component {
     }).then((data) => {
       this.setState({
         total: data._total,
-        text: data.streams
+        streams: data.streams
       })
     });
   }
   
   render() {
-    let stream ="";
-    
-    if(this.state.text === undefined) {
-      stream = "test";
-    } else {
-      stream = this.state.text.map(stream => (
-        <div key={stream._id}>
-          <p>{stream.channel.name}</p>
-          <img src={stream.preview.medium} alt={stream.channel.name}/>
-        </div>   
-      ));
+    console.log(this.state.streams);
+    let stream = null;
+
+    if(this.state.streams != undefined) {
+      stream = (
+        <TwitchElement 
+          streams={this.state.streams}
+        />
+      );
     }
 
     return (
-      <div className="App">
-        <p>{this.state.total}</p>
+      <div className="container">
         {stream}
       </div>
     );
