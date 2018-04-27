@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const twitchElement = (props) => props.streams.map(stream => {
     return (

@@ -1,30 +1,47 @@
 import React, { Component } from 'react';
 import './App.css';
 import TwitchElement from './components/twitchElement';
+import InputQuery from './components/inputQuery';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {};
-  }
-
-  componentWillMount() {
-    var url = 'https://api.twitch.tv/kraken/streams/?game=fortnite&limit=24';
+    this.stream = null;
     
-    var myHeaders = new Headers({
+    this.url = 'https://api.twitch.tv/kraken/streams/?game=fortnite&limit=24';
+    this.myHeaders = new Headers({
       'Accept': 'application/vnd.twitchtv.v5+json',  
       'Client-ID': 'ff0xic4mmcxgfmi15addjjs9vvryvh'
     });      
-    
-    var myInit = {
+    this.myInit = {
       method: 'GET',
-      headers: myHeaders,
+      headers: this.myHeaders,
     };
-
-    var myRequest = new Request(url, myInit)
-    fetch(myRequest).then(function(response){
+    this.myRequest = new Request(this.url, this.myInit);
+  }
+  
+  componentDidMount() {
+    fetch(this.myRequest).then(function(response){
       return response.json()
     }).then((data) => {
+      this.setState({
+        total: data._total,
+        streams: data.streams
+      })
+    });
+  }
+
+  apiCall = (event) => {
+    console.log(event.target.value);
+    this.url = 'https://api.twitch.tv/kraken/streams/?game=' + event.target.value + '&limit=24';
+    this.myRequest = new Request(this.url, this.myInit);
+    console.log(this.url);
+    
+    fetch(this.myRequest).then(function(response){
+      return response.json()
+    }).then((data) => {
+      console.log('test');
       this.setState({
         total: data._total,
         streams: data.streams
@@ -34,10 +51,9 @@ class App extends Component {
   
   render() {
     console.log(this.state.streams);
-    let stream = null;
 
-    if(this.state.streams != undefined) {
-      stream = (
+    if(this.state.streams !== undefined) {
+      this.stream = (
         <TwitchElement 
           streams={this.state.streams}
         />
@@ -45,8 +61,13 @@ class App extends Component {
     }
 
     return (
-      <div className="container">
-        {stream}
+      <div>
+        <InputQuery
+          changed={this.apiCall}
+        />
+        <div className="container">
+          {this.stream}
+        </div>
       </div>
     );
     }
