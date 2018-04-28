@@ -1,3 +1,11 @@
+body {
+  background: #1E1B24;
+}
+
+a:link {
+  text-decoration: none;
+}
+
 .container {
   display: flex;
   /* align-items: center; */
@@ -6,8 +14,30 @@
   flex-wrap: wrap;
 }
 
-.element {
-  height: 300px;
-  width: 400px;
+.container p {
+  color: white;
 }
 
+.container span {
+  color: grey;
+}
+
+.element {
+  height: 250px;
+  width: 320px;
+  padding: 2% 0%;
+}
+
+.input-container {
+  background:#3D325A; 
+  text-align: center;
+  padding: 1% 0%;
+}
+
+.input {
+  border: none;
+  background: black;
+  color: white;
+  padding: .5% 1%;
+  width: 45%;
+}

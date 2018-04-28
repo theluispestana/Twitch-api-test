@@ -2,7 +2,16 @@ import React from 'react';
 
 const inputQuery = (props) => {
     return (
-        <input type="text" onChange={props.changed} value={props.value}/>
+        <div className="input-container">
+            <input 
+                className="input" 
+                type="text" 
+                onChange={props.changed} 
+                // value={props.value}
+                placeholder="Enter the name of a game"
+                autoFocus
+            />
+        </div>
     )
 }
 

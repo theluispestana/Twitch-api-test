@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {};
     this.stream = null;
     
-    this.url = 'https://api.twitch.tv/kraken/streams/?game=fortnite&limit=24';
+    this.url = 'https://api.twitch.tv/kraken/streams/?game=fortnite&limit=25';
     this.myHeaders = new Headers({
       'Accept': 'application/vnd.twitchtv.v5+json',  
       'Client-ID': 'ff0xic4mmcxgfmi15addjjs9vvryvh'
@@ -34,7 +34,7 @@ class App extends Component {
 
   apiCall = (event) => {
     console.log(event.target.value);
-    this.url = 'https://api.twitch.tv/kraken/streams/?game=' + event.target.value + '&limit=24';
+    this.url = 'https://api.twitch.tv/kraken/streams/?game=' + event.target.value + '&limit=25';
     this.myRequest = new Request(this.url, this.myInit);
     console.log(this.url);
     
