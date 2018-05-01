@@ -23,7 +23,7 @@ a:link {
 }
 
 .element {
-  height: 250px;
+  height: auto;
   width: 320px;
   padding: 2% 0%;
 }
